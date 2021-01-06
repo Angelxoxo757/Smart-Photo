@@ -6,7 +6,7 @@ import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 
-const particleOptions = {
+const particlesOptions = {
   particles: {
     number: {
       // value: 100,
@@ -39,7 +39,7 @@ class App extends Component {
       return (
         <div className="App">
           <Particles className='particles'
-            params={particleOptions}
+          params={particlesOptions}
           />
           <Navigation />
           <Logo />

@@ -9,7 +9,7 @@ import Rank from './components/Rank/Rank';
 const particleOptions = {
   particles: {
     number: {
-      value: 205,
+      // value: 100,
       density: {
         enable: true,
         value_area: 800

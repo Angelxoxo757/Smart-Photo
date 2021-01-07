@@ -15,7 +15,7 @@ const app = new Clarifai.App({
 const particlesOptions = {
   particles: {
     number: {
-      value: 100,
+      value: 170,
       density: {
         enable: true,
         value_area: 800
@@ -45,28 +45,28 @@ class App extends Component {
     super();
     this.state = {
       input: '',
+      imageUrl: ''
     }
   }
 
   onInputChange = (event) => {
-    console.log(event.target.value);
+    this.setState({input: event.target.value});
   }
 
   onButtonSubmit = () => {
-    console.log('click');
+    this.setState({ imageUrl: this.state.input });
     app.models
     .predict(
-      "819e5607ad804e44991dd59c023dd5c8",
-      ("https://samples.clarifai.com/face-det.jpg")
+      Clarifai.FACE_DETECT_MODEL,
+      this.state.input)
       .then(
         function(response) {
-          console.log(response);
+          console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
         },
         function(err) {
           // there was an error
         }
       )
-    )
   }
 
   render() {
@@ -82,7 +82,7 @@ class App extends Component {
         onInputChange={this.onInputChange} 
         onButtonSubmit={ this.onButtonSubmit} />
 
-         <FaceRecognition /> 
+         <FaceRecognition imageUrl={this.state.imageUrl} /> 
       </div>
     );
   }
